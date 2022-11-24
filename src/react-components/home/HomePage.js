@@ -1,25 +1,26 @@
-import React, { useContext, useEffect } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import classNames from "classnames";
-import configs from "../../utils/configs";
-import { CreateRoomButton } from "./CreateRoomButton";
-import { PWAButton } from "./PWAButton";
-import { useFavoriteRooms } from "./useFavoriteRooms";
-import { usePublicRooms } from "./usePublicRooms";
-import styles from "./HomePage.scss";
+import React, { useContext, useEffect } from "react";
+
+import { AppLogo } from "../misc/AppLogo";
 import { AuthContext } from "../auth/AuthContext";
-import { createAndRedirectToNewHub } from "../../utils/phoenix-utils";
-import { MediaGrid } from "../room/MediaGrid";
-import { MediaTile } from "../room/MediaTiles";
-import { PageContainer } from "../layout/PageContainer";
-import { scaledThumbnailUrlFor } from "../../utils/media-url-utils";
 import { Column } from "../layout/Column";
 import { Container } from "../layout/Container";
-import { SocialBar } from "../home/SocialBar";
+import { CreateRoomButton } from "./CreateRoomButton";
+import { MediaGrid } from "../room/MediaGrid";
+import { MediaTile } from "../room/MediaTiles";
+import { PWAButton } from "./PWAButton";
+import { PageContainer } from "../layout/PageContainer";
 import { SignInButton } from "./SignInButton";
-import { AppLogo } from "../misc/AppLogo";
+import { SocialBar } from "../home/SocialBar";
+import classNames from "classnames";
+import configs from "../../utils/configs";
+import { createAndRedirectToNewHub } from "../../utils/phoenix-utils";
 import { isHmc } from "../../utils/isHmc";
 import maskEmail from "../../utils/mask-email";
+import { scaledThumbnailUrlFor } from "../../utils/media-url-utils";
+import styles from "./HomePage.scss";
+import { useFavoriteRooms } from "./useFavoriteRooms";
+import { usePublicRooms } from "./usePublicRooms";
 
 export function HomePage() {
   const auth = useContext(AuthContext);
@@ -52,6 +53,8 @@ export function HomePage() {
 
   const canCreateRooms = !configs.feature("disable_room_creation") || auth.isAdmin;
   const email = auth.email;
+
+  console.log("this is for deploy testing");
   return (
     <PageContainer className={styles.homePage}>
       <Container>
